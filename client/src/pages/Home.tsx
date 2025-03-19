@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import { useEffect } from "react";
 import ParticleBackground from "@/components/ParticleBackground";
 import Hero from "@/components/sections/Hero";
@@ -10,7 +11,10 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background relative">
       <ParticleBackground />
-      <Hero />
+      <Navbar />
+      <div id="home">
+        <Hero />
+      </div>
       <About />
       <Skills />
       <Projects />
