@@ -7,20 +7,6 @@ import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
-  useEffect(() => {
-    const smoothScroll = (e: WheelEvent) => {
-      e.preventDefault();
-      const delta = e.deltaY;
-      window.scrollBy({
-        top: delta,
-        behavior: "smooth"
-      });
-    };
-
-    window.addEventListener("wheel", smoothScroll, { passive: false });
-    return () => window.removeEventListener("wheel", smoothScroll);
-  }, []);
-
   return (
     <main className="min-h-screen bg-background relative">
       <ParticleBackground />

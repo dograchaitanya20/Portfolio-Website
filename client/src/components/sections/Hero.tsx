@@ -16,7 +16,7 @@ export default function Hero() {
           filter: "brightness(0.3)"
         }}
       />
-      
+
       <div className="relative z-10 text-center">
         <motion.h1 
           className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 glow"
@@ -24,9 +24,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-gradient">John Doe</span>
+          <span className="text-gradient">Chaitanya Dogra</span>
         </motion.h1>
-        
+
         <motion.h2 
           className="text-xl md:text-2xl lg:text-3xl text-primary/80 mb-8"
           initial={{ opacity: 0 }}
@@ -35,7 +35,7 @@ export default function Hero() {
         >
           Full Stack Developer
         </motion.h2>
-        
+
         <motion.p 
           className="text-lg md:text-xl max-w-2xl mx-auto text-muted-foreground"
           initial={{ opacity: 0 }}

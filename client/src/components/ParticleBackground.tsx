@@ -27,20 +27,30 @@ export default function ParticleBackground() {
     };
 
     const createParticles = () => {
-      const particleCount = Math.floor((canvas.width * canvas.height) / 10000);
+      // Reduce the number of particles based on screen size
+      const particleCount = Math.floor((canvas.width * canvas.height) / 20000);
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 2,
-          speed: Math.random() * 0.5
+          size: Math.random() * 1.5, // Reduced particle size
+          speed: Math.random() * 0.3 // Reduced speed
         });
       }
     };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+      // Clear only the areas where particles are
+      particles.forEach(particle => {
+        ctx.clearRect(
+          particle.x - particle.size - 1,
+          particle.y - particle.size - 1,
+          particle.size * 2 + 2,
+          particle.size * 2 + 2
+        );
+      });
+
+      ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
 
       particles.forEach((particle) => {
         ctx.beginPath();
@@ -60,10 +70,16 @@ export default function ParticleBackground() {
     createParticles();
     animate();
 
-    window.addEventListener("resize", resizeCanvas);
+    const resizeHandler = () => {
+      resizeCanvas();
+      particles.length = 0; // Clear existing particles
+      createParticles(); // Create new particles based on new size
+    };
+
+    window.addEventListener("resize", resizeHandler);
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("resize", resizeHandler);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -71,7 +87,7 @@ export default function ParticleBackground() {
   return (
     <motion.canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-50"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
