@@ -22,7 +22,7 @@ export default function About() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
                 <div className="relative">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+                    src="/pic.jpg"  // Updated to use absolute path from public directory
                     alt="Profile"
                     className="rounded-lg w-full object-cover aspect-square"
                   />
@@ -35,7 +35,7 @@ export default function About() {
                     Background
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    With over 5 years of experience in web development, I specialize in
+                    With over 2 years of experience in web development, I specialize in
                     creating innovative and performant applications that deliver exceptional
                     user experiences.
                   </p>

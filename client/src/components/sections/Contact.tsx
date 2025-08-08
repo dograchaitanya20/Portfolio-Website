@@ -6,10 +6,19 @@ import ContactForm from "@/components/ContactForm";
 
 export default function Contact() {
   const socialLinks = [
-    { icon: <FiGithub />, url: "https://github.com/username", label: "GitHub" },
-    { icon: <FiLinkedin />, url: "https://linkedin.com/in/username", label: "LinkedIn" },
-    { icon: <FiTwitter />, url: "https://twitter.com/username", label: "Twitter" },
-    { icon: <FiMail />, url: "mailto:contact@example.com", label: "Email" }
+    { icon: <FiGithub />, url: "https://github.com/dograchaitanya20", label: "GitHub", type: "link" },
+    { icon: <FiLinkedin />, url: "https://www.linkedin.com/in/chaitanya-dogra-9b5489297/", label: "LinkedIn", type: "link" },
+    { icon: <FiTwitter />, url: "https://twitter.com/username", label: "Twitter", type: "link" },
+    { 
+      icon: <FiMail />, 
+      url: "dograchaitanya3@gmail.com", 
+      label: "Email", 
+      type: "email",
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault();
+        window.location.href = `mailto:dograchaitanya3@gmail.com`;
+      }
+    }
   ];
 
   return (
@@ -61,10 +70,11 @@ export default function Contact() {
                       asChild
                     >
                       <a
-                        href={link.url}
-                        target="_blank"
+                        href={link.type === "email" ? `mailto:${link.url}` : link.url}
+                        target={link.type === "email" ? "_self" : "_blank"}
                         rel="noopener noreferrer"
                         className="flex items-center justify-center"
+                        onClick={link.onClick}
                       >
                         {link.icon}
                         <span>{link.label}</span>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
+import { useState } from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -20,6 +21,8 @@ export default function ProjectCard({
   githubUrl,
   delay = 0
 }: ProjectCardProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -27,13 +30,21 @@ export default function ProjectCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
     >
-      <Card className="overflow-hidden bg-background/50 backdrop-blur-lg border-primary/20 hover:border-primary/50 transition-all group">
-        <div className="relative overflow-hidden aspect-video">
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-          />
+      <Card className="overflow-hidden bg-background/50 backdrop-blur-lg border-primary/20 hover:border-primary/40 transition-colors h-full">
+        <div className="relative w-full aspect-video"> {/* Changed to aspect-video for consistent ratio */}
+          {!imageError ? (
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-full object-contain bg-black/10" // Changed to object-contain and added subtle background
+              onError={() => setImageError(true)}
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground">
+              Image not available
+            </div>
+          )}
         </div>
         
         <CardHeader>

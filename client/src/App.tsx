@@ -8,8 +8,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <CustomCursor />
-      <Home />
-      <Toaster />
+      <main>
+        <Home />
+        <Toaster />
+      </main>
     </QueryClientProvider>
   );
 }
